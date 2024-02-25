@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number Game</title>
+    <link rel="stylesheet" href="guessthenumber.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GUESS THE NUMBER GAME</h1>
+        <p id="winner">A FUN AND EXCITING CHALLENGE!</p>
+    </div>
+    <div class="label-container">
+        <label for="winningNumber">Enter Winning Number:</label>
+        <input type="number" id="winningNumber" value="1">
+    </div>
+    <div class="wheel">
+        <canvas class="" id="canvas" width="500" height="500"></canvas>
+        <div class="center-circle" onclick="spin()">
+            <div class="triangle"></div>
+        </div>
+    </div>
+    <div id="canvas-container"></div>
+    <div class="inputArea" onchange="createWheel()">
+        <textarea rows="20" cols="30" id="numberList" style="display: none;">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</textarea>
+    </div>
+    <!--confetti library-->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Audio for background suspense -->
+    <audio id="backgroundSound" loop autoplay>
+        <source src="audio/background_suspense.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Audio for win -->
+    <audio id="correctSound">
+        <source src="audio/correct.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Audio for lost -->
+    <audio id="wrongSound">
+        <source src="audio/wrong.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="messageBox" class="message-box">
+        <p id="messageText"></p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="guessthenumber.js"></script>
+
+</html>

@@ -1,0 +1,105 @@
+.message-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+body {
+    background-color: #ade5f5;
+}
+
+.header {
+    padding: 20px;
+    color: #000000;
+    margin: 0 auto;
+    margin-bottom: -30px;
+}
+
+.header h1,
+p {
+    text-align: center;
+}
+
+.wheel {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.center-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 80px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 30px solid white;
+    position: absolute;
+    top: 50%;
+    right: -220%;
+    transform: translateY(-50%);
+}
+
+textarea {
+    background-color: rgba(20, 20, 20, 0.2);
+    caret-color: #36beb3;
+    resize: none;
+    color: #000000;
+    display: none;
+    /* Hide the textarea */
+}
+
+.inputArea {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.label-container {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.label-container label {
+    color: #080606;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    background-color: rgba(54, 101, 143, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100px;
+    font-size: 16px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #38d39f;
+}
