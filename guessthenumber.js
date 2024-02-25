@@ -1,8 +1,8 @@
 function randomColor() {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
-    return { r, g, b };
+    r = Math.floor(Math.random() * 255);
+    g = Math.floor(Math.random() * 255);
+    b = Math.floor(Math.random() * 255);
+    return { r, g, b }
 }
 
 function toRad(deg) {
@@ -18,35 +18,86 @@ function easeOutSine(x) {
 }
 
 function getPercent(input, min, max) {
-    return (((input - min) * 100) / (max - min)) / 100;
+    return (((input - min) * 100) / (max - min)) / 100
 }
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-const width = canvas.width;
-const height = canvas.height;
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
+const width = document.getElementById("canvas").width
+const height = document.getElementById("canvas").height
 
-const centerX = width / 2;
-const centerY = height / 2;
-const radius = width / 2;
+const centerX = width / 2
+const centerY = height / 2
+const radius = width / 2
 
-let items = [];
+let items = document.getElementById("numberList").value.split("\n");
 
-let currentDeg = 0;
-let step = 0;
-let colors = [];
-let itemDegs = {};
+let currentDeg = 0
+let step = 360 / items.length
+let colors = []
+let itemDegs = {}
+
+for (let i = 0; i < items.length + 1; i++) {
+    colors.push(randomColor())
+}
 
 function createWheel() {
     items = document.getElementById("numberList").value.split("\n");
-    step = 360 / items.length;
-    colors = [];
+    step = 360 / items.length
+    colors = []
     for (let i = 0; i < items.length + 1; i++) {
-        colors.push(randomColor());
+        colors.push(randomColor())
     }
-    draw();
+    draw()
+}
+draw()
+   // Confetti effect function
+   let confettiCanvas;
+
+// Function to start the confetti effect
+function startConfetti() {
+// Remove the existing canvas if it exists
+if (confettiCanvas) {
+confettiCanvas.remove();
 }
 
+// Create a new canvas
+confettiCanvas = document.createElement("canvas");
+confettiCanvas.width = window.innerWidth;
+confettiCanvas.height = window.innerHeight;
+document.body.appendChild(confettiCanvas);
+
+// Configure confetti
+const duration = 10 * 1000;
+const animationEnd = Date.now() + duration;
+const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+function randomInRange(min, max) {
+return Math.random() * (max - min) + min;
+}
+
+const interval = setInterval(() => {
+const timeLeft = animationEnd - Date.now();
+
+if (timeLeft <= 0) {
+    clearInterval(interval);
+    if (confettiCanvas) {
+        confettiCanvas.remove(); // Remove canvas when confetti is finished
+    }
+    return;
+}
+
+const particleCount = 50 * (timeLeft / duration);
+// since particles fall down, start a bit higher than random
+confetti(
+    Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+    }),
+    confettiCanvas
+);
+}, 250);
+}
 function draw() {
     ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
